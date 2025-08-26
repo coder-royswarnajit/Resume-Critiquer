@@ -1,6 +1,6 @@
-# Resume Critiquer 📄
+# Agragrati - AI Resume & Job Search 🎯
 
-An AI-powered resume analysis tool built with Streamlit and Groq AI that provides comprehensive, structured feedback and improvement suggestions for job seekers---
+An AI-powered resume analysis and job search platform built with Streamlit and Groq AI that provides comprehensive resume feedback and helps you find real job opportunities from multiple job boards and APIs.
 
 ## 📞 Support
 
@@ -17,11 +17,13 @@ If you encounter issues:
 ### What Makes This Tool Special:
 
 - **🎯 Targeted Analysis**: Provides job-specific recommendations
-- **� Structured Output**: Organized feedback in 6 clear sections
-- **⚡ Fast Processing**: Quick AI-powered analysis
+- **📊 Structured Output**: Organized feedback in 6 clear sections
+- **🔍 Smart Job Search**: AI-powered job matching based on your resume
+- **💼 Multi-Platform Search**: Search across LinkedIn, Indeed, ZipRecruiter, and more
+- **⚡ Fast Processing**: Quick AI-powered analysis and job search
 - **🔒 Privacy Focused**: Your resume data is processed securely
 - **💰 Cost Effective**: Uses free Groq API with generous limits
-- **�🚀 Easy Deployment**: Multiple setup options for all skill levels
+- **🚀 Easy Deployment**: Multiple setup options for all skill levels
 
 ### Sample Analysis Output:
 
@@ -37,9 +39,29 @@ Perfect for job seekers, career counselors, and HR professionals! 🎉
 
 ---
 
+## ✨ New Features
+
+### 🔍 Real Job Search Integration
+- **Smart Resume-Based Search**: Automatically extracts skills from your resume and finds matching real jobs
+- **Manual Job Search**: Search for specific job titles, keywords, or companies
+- **Real API Integration**: Uses JSearch API (RapidAPI) and Adzuna API for live job data
+- **Multi-Platform Coverage**: Searches across LinkedIn, Indeed, ZipRecruiter, Google Jobs, and more
+- **Advanced Filtering**: Filter results by company, job type, location, and source
+- **Export Results**: Download job search results as CSV for offline review
+- **Fallback Mode**: Shows sample data if API keys are not configured
+
+### 💡 Career Insights
+- **Skill Extraction**: AI identifies key skills from your resume
+- **Job Recommendations**: Personalized suggestions for job titles and companies to target
+- **Career Guidance**: Strategic advice for improving your job search
+
+---
+
 ## 📄 License
 
-This project is open source and available under the MIT License.Features
+This project is open source and available under the MIT License.
+
+## 🚀 Features
 
 - **📁 Multi-Format Support**: Upload resumes in PDF or TXT format
 - **🤖 AI-Powered Analysis**: Uses advanced Groq Llama models for intelligent feedback
@@ -47,6 +69,9 @@ This project is open source and available under the MIT License.Features
 - **🎯 Job-Specific Advice**: Tailored recommendations based on target job role
 - **🔍 ATS Compatibility**: Checks for Applicant Tracking System optimization
 - **⚡ Real-time Processing**: Fast analysis with detailed improvement suggestions
+- **💼 Real Job Search**: Find live job opportunities from real APIs based on your resume or manual search
+- **📈 Career Insights**: Get personalized career recommendations and skill analysis
+- **🔗 API Integration**: Connects to JSearch API and Adzuna API for real-time job data
 
 ## 📋 Prerequisites
 
@@ -137,12 +162,32 @@ docker run -p 8501:8501 --env-file .env resume-critiquer
    pip install -r requirements.txt
    ```
 
-5. **Set up your API key**:
+5. **Set up your API keys**:
+
+   **Required - Groq API Key**:
    - Open the `.env` file
    - Replace `your_groq_api_key_here` with your actual API key:
    ```env
    GROQ_API_KEY=gsk_your_actual_api_key_here
    ```
+
+   **Optional - Job Search API Keys** (for real job data):
+
+   **JSearch API (via RapidAPI)** - 200 free requests/month:
+   - Visit: https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
+   - Subscribe to the free plan
+   - Copy your RapidAPI key to `.env`: `RAPIDAPI_KEY=your_key_here`
+
+   **Adzuna API** - 25 free requests/hour:
+   - Visit: https://developer.adzuna.com/
+   - Create a free account and get your App ID and App Key
+   - Add to `.env`:
+     ```env
+     ADZUNA_APP_ID=your_app_id_here
+     ADZUNA_APP_KEY=your_app_key_here
+     ```
+
+   **Note**: If job search API keys are not provided, the app will show sample job data with a warning.
 
 6. **Run the application**:
    ```bash
@@ -155,7 +200,9 @@ docker run -p 8501:8501 --env-file .env resume-critiquer
 
 ## 🎯 How to Use the Application
 
+### 📄 Resume Analysis
 1. **Upload Your Resume**:
+   - Go to the "Resume Analysis" tab
    - Click "Browse files" button
    - Select your resume (PDF or TXT format)
    - Wait for upload to complete
@@ -166,7 +213,7 @@ docker run -p 8501:8501 --env-file .env resume-critiquer
    - This provides more targeted feedback
 
 3. **Analyze Your Resume**:
-   - Click the "Analyze" button
+   - Click the "Analyze Resume" button
    - Wait for AI analysis (usually 10-30 seconds)
    - Review the comprehensive feedback
 
@@ -177,6 +224,31 @@ docker run -p 8501:8501 --env-file .env resume-critiquer
    - **Recommendations**: Concrete suggestions for enhancement
    - **Action Items**: Prioritized tasks (High/Medium/Low priority)
    - **Final Score**: Numerical rating with justification
+
+### 🔍 Job Search
+1. **Choose Search Method**:
+   - **Smart Search**: Upload and analyze your resume first, then use AI to find matching jobs
+   - **Manual Search**: Enter specific job titles, keywords, or company names
+
+2. **Configure Search Parameters**:
+   - **Location**: Enter city, state, or country (e.g., "San Francisco, CA")
+   - **Job Type**: Filter by Full-time, Part-time, Contract, or Internship
+   - **Results Count**: Choose how many results to retrieve (10-50)
+
+3. **Search and Filter**:
+   - Click "Search Jobs" to find opportunities
+   - Use company and source filters to narrow results
+   - Review job details including salary, location, and application links
+
+4. **Export Results**:
+   - Download search results as CSV for offline review
+   - Save job listings for future reference
+
+### 💡 Career Insights
+1. **Automatic Generation**: After analyzing your resume, visit the "Career Insights" tab
+2. **Review Recommendations**: Get personalized job search strategies
+3. **Skill Analysis**: See key skills identified from your resume
+4. **Career Guidance**: Follow strategic advice for improving your job search
 
 ---
 
@@ -194,14 +266,19 @@ docker run -p 8501:8501 --env-file .env resume-critiquer
 - Ensure your PDF contains selectable text (not just images)
 - Try converting to TXT format if PDF doesn't work
 
+**Job Search Issues**:
+- If no jobs are found, try different keywords or broader location
+- Some job sites may temporarily block requests - try again later
+- Ensure you have a stable internet connection for job scraping
+
 **Docker Issues**:
 - Ensure Docker Desktop is running
 - Try `docker-compose down` then `docker-compose up --build`
 - Check if port 8501 is already in use
 
-**Slow Analysis**:
-- This is normal for detailed analysis
-- Wait up to 60 seconds for complex resumes
+**Slow Analysis/Job Search**:
+- Resume analysis: Wait up to 60 seconds for complex resumes
+- Job search: May take 30-60 seconds depending on number of results
 - Check your internet connection
 
 ---
@@ -209,10 +286,17 @@ docker run -p 8501:8501 --env-file .env resume-critiquer
 ## ⚙️ Technical Details
 
 - **Framework**: Streamlit for web interface
-- **AI Model**: Groq Llama-3.3-70b-versatile
+- **AI Model**: Groq Llama-3.3-70b-versatile for resume analysis and skill extraction
+- **Job Search APIs**:
+  - JSearch API (via RapidAPI) - 200 free requests/month
+  - Adzuna API - 25 free requests/hour
+  - Fallback to sample data if APIs not configured
 - **File Processing**: PyPDF2 for PDF extraction
+- **Data Processing**: Pandas for job data manipulation and filtering
+- **HTTP Requests**: Requests library for API calls
 - **Environment**: Python 3.8+ with virtual environment support
 - **Deployment**: Docker containerized for easy deployment
+- **Job Platforms**: LinkedIn, Indeed, ZipRecruiter, Google Jobs, and more (via APIs)
 
 ## 🤖 Supported AI Models
 
